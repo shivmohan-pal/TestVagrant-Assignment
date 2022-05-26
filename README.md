@@ -1,6 +1,6 @@
 # TestVagrant-Assignment
 
-if You have node js installed in your system follow these steps:
+if You have node js installed in your system follow these steps:<br/>
    i. open terminal or powershell inside the folder where this file is located (app.js)
    ii. type in terminal node 'filename' ( in our case  : node app.js) then press enter 
    iii. result will display in ternimal or powershell what ever you are using.
