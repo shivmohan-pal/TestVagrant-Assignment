@@ -40,9 +40,18 @@ class Teams{
       return this.filteredTeam;
      }
      
-     
-
 }
+
+
+// fouth requirement
+function averagePoints(teams){
+    var sum=0;
+    for(let i = 0;i<teams.length;i++){
+        sum+=teams[i].points
+    }
+ return sum/teams.length;
+}
+
 
 
  
@@ -50,3 +59,7 @@ class Teams{
  console.log('Filtered Teams : ' , new Teams(teamList).has2ConsecutiveLosses());// output in console
 // third requirement
  console.log('Filtered Teams With Gernalized method: ' , new Teams(teamList).hasConsecutiveRecord(2,1));// output in console 
+// fourth requirement
+var team = new Teams(teamList).hasConsecutiveRecord(2,1);
+console.log('Average of Filtered Teams: ' , averagePoints(team));// output in console 
+
