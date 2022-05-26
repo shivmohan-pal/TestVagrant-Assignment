@@ -12,5 +12,5 @@ if you do not have node js installed in your system follow these steps:<br/>
    iv. result will display in console of the browser below the code<br/><br/>
 
 <br/><br/>
-Thankyou Giving this opportunity.
+Thankyou Providing this opportunity.
 
