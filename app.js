@@ -13,32 +13,40 @@ var teamList = [
 ];
 
 
-class Team{
-    constructor(teamName,points,results){
-        this.name = teamName;
-        this.points = points;
-        this.results = results;
-        // this.results = typeof results === 'string' || 'number' ? [results] : [...results];
+class Teams{
+    constructor(teamList){
+        this.teams = teamList;
     }
-
+    filteredTeam=[];
    has2ConsecutiveLosses(){//function of 2 consecutive losses
-       var flag=0;
-     for(let i=0;i<this.results.length;i++){
-        flag=(!this.results[i] || this.results[i]==='loss') ? flag+1 : 0;
-        if(flag===2){return true;}
+     for(let j =0;j<this.teams.length;j++){
+     var flag=0;
+     for(let i=0;i<this.teams[j].last5Results.length;i++){
+        flag=(!this.teams[j].last5Results[i] || this.teams[j].last5Results[i]==='loss') ? flag+1 : 0;
+        if(flag===2){this.filteredTeam.push(this.teams[j]);break;}
      }
-      return false;
    }
+   return this.filteredTeam;
+  }
+
+   hasConsecutiveRecord(n,winOrLoss){//function for n consecutive win or loss. Parameter n is typeof 'number' for number of consecutive win or loss and second  parameter winOrLoss is typeof 'string', to check for win or loss
+    for(let j =0;j<this.teams.length;j++){
+        var flag=0;
+        for(let i=0;i<this.teams[j].last5Results.length;i++){
+           flag= this.teams[j].last5Results[i] === winOrLoss ? flag+1 : 0;
+           if(flag===n){this.filteredTeam.push(this.teams[j]);break;}
+        }
+      }
+      return this.filteredTeam;
+     }
+     
+     
+
 }
 
-function TeamsWithConsecutiveLossOrWin(teamsList){// paramter list of team with paritcular data
-    var loserTeams = [];
-    for(let i=0;i<teamsList.length;i++){
-     if(new Team(teamsList[i].name,teamsList[i].points,teamsList[i].last5Results).has2ConsecutiveLosses()) // no parameter for 2 consecutive losses
-         loserTeams.push(teamsList[i])
-    }
-    return loserTeams;
- }
+
  
- 
- console.log('Filtered Teams : ' ,TeamsWithConsecutiveLossOrWin(teamList));// output in console
+//  second requirement
+ console.log('Filtered Teams : ' , new Teams(teamList).has2ConsecutiveLosses());// output in console
+// third requirement
+ console.log('Filtered Teams With Gernalized method: ' , new Teams(teamList).hasConsecutiveRecord(2,1));// output in console 
